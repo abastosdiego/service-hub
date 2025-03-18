@@ -1,98 +1,105 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Sistema de Agendamento e Avaliação de Serviços
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## **Propósito do Sistema**
+O sistema tem como objetivo conectar **clientes** e **fornecedores de serviços locais**, facilitando o agendamento, a aprovação de solicitações e a avaliação dos serviços prestados. Ele permite que fornecedores anunciem seus serviços e definam as áreas que atendem, enquanto os clientes podem solicitar serviços, agendar horários e avaliar a qualidade do serviço após a conclusão.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## **Funcionalidades Principais**
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### **Para Clientes**
+1. **Cadastro/Login**: Registrar-se e acessar o sistema.
+2. **Busca de Fornecedores**: Encontrar fornecedores por tipo de serviço, cidade e bairro.
+3. **Solicitação de Serviço**: Solicitar um serviço, escolhendo data e período (manhã ou tarde).
+4. **Aprovação/Sugestão de Data**: Receber notificações sobre a aprovação ou sugestão de uma nova data pelo fornecedor.
+5. **Avaliação do Serviço**: Avaliar o serviço após a conclusão, com nota e comentário.
+6. **Histórico de Serviços**: Visualizar o histórico de serviços solicitados e suas avaliações.
 
-## Project setup
+### **Para Fornecedores**
+1. **Cadastro/Login**: Registrar-se e acessar o sistema.
+2. **Definição de Área de Atuação**: Definir os bairros atendidos dentro de uma cidade.
+3. **Gerenciamento de Serviços**: Adicionar, editar ou remover serviços oferecidos.
+4. **Aprovação de Solicitações**: Aprovar ou sugerir uma nova data para as solicitações de serviço.
+5. **Visualização de Avaliações**: Ver as avaliações recebidas dos clientes.
+6. **Histórico de Serviços**: Visualizar o histórico de serviços prestados.
 
-```bash
-$ npm install
+### **Para o Sistema**
+1. **Notificações**: Enviar notificações por e-mail ou mensagem interna para clientes e fornecedores sobre atualizações de status.
+2. **Busca e Filtros**: Permitir buscas avançadas com filtros por tipo de serviço, localização, avaliação, etc.
+3. **Avaliações e Reputação**: Calcular a reputação do fornecedor com base nas avaliações recebidas.
+4. **Pagamento (Opcional)**: Integração com sistemas de pagamento para pagamentos diretos pelo sistema.
+
+---
+
+## **Casos de Uso**
+
+### **1. Cadastro de Usuário**
+- **Ator**: Cliente ou Fornecedor.
+- **Descrição**: Um usuário se registra no sistema como cliente, fornecedor ou ambos.
+- **Fluxo**:
+  1. O usuário acessa a página de cadastro.
+  2. Preenche os dados básicos (nome, email, senha, telefone, endereço).
+  3. Escolhe o tipo de usuário (cliente, fornecedor ou ambos).
+  4. O sistema salva os dados e redireciona para a página inicial.
+
+### **2. Solicitação de Serviço**
+- **Ator**: Cliente.
+- **Descrição**: Um cliente solicita um serviço de um fornecedor.
+- **Fluxo**:
+  1. O cliente busca um fornecedor por tipo de serviço e localização.
+  2. Seleciona um serviço e escolhe uma data e período (manhã ou tarde).
+  3. O sistema envia a solicitação para o fornecedor.
+  4. O fornecedor aprova ou sugere uma nova data.
+  5. O cliente recebe uma notificação sobre a decisão do fornecedor.
+
+### **3. Aprovação de Solicitação**
+- **Ator**: Fornecedor.
+- **Descrição**: Um fornecedor aprova ou sugere uma nova data para uma solicitação de serviço.
+- **Fluxo**:
+  1. O fornecedor recebe uma notificação sobre uma nova solicitação.
+  2. Visualiza os detalhes da solicitação (data, período, cliente).
+  3. Aprova a solicitação ou sugere uma nova data.
+  4. O sistema notifica o cliente sobre a decisão.
+
+### **4. Avaliação do Serviço**
+- **Ator**: Cliente.
+- **Descrição**: Um cliente avalia um serviço após a conclusão.
+- **Fluxo**:
+  1. Após a conclusão do serviço, o cliente recebe uma solicitação para avaliar o serviço.
+  2. O cliente fornece uma nota (de 1 a 5) e um comentário opcional.
+  3. O sistema atualiza a reputação do fornecedor com base na avaliação.
+  4. A avaliação é exibida na página do fornecedor.
+
+---
+
+## **Fluxos Básicos**
+
+### **Fluxo de Solicitação e Execução de Serviço**
+1. Cliente solicita um serviço.
+2. Fornecedor aprova ou sugere nova data.
+3. Serviço é executado na data acordada.
+4. Cliente avalia o serviço.
+5. Avaliação é exibida na página do fornecedor.
+
+### **Fluxo de Cadastro e Gerenciamento de Serviços**
+1. Fornecedor se cadastra no sistema.
+2. Fornecedor define os serviços oferecidos e as áreas atendidas.
+3. Cliente busca e solicita um serviço.
+4. Fornecedor gerencia as solicitações recebidas.
+
+---
+
+## **Para subir a aplicação**
+
+Ambiente Node.js com Nest.js configurado usando docker-compose.
+
+Necessário docker e docker compose instalados para rodar o ambiente de desenvolvimento.
+
+01 - Verificar no docker-compose.yml se o parâmetro INSTALL_NODE_MODULES está true e comentar as linhas de configuração de proxy (caso existam).
+
+Obs: Caso queira criar um novo projeto Nest.js, copie os arquivos Dockerfile, docker-compose.yml e docker-entrypoint.sh para uma pasta vazia e defina os parâmetros CREATE_NEW_PROJECT_NESTJS e INSTALL_NODE_MODULES do docker-compose.ym para true.
+
+02 - No terminal, rodar o seguinte comando para subir o ambiente:
+```php
+docker compose up
 ```
-
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

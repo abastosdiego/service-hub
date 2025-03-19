@@ -21,8 +21,6 @@ services:
     restart: unless-stopped
     depends_on:
       - service-hub-postgres
-  #     - mongo-express
-  #     - postgres
   service-hub-postgres:
     container_name: service-hub-postgres
     image: postgres:16

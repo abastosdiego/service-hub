@@ -1,0 +1,70 @@
+// Instalar a extensão "Rest Client" do VSCode
+
+// Configurar o arquivo settings.json do VSCode :
+// "rest-client.excludeHostsForProxy": ["localhost","127.0.0.1"]
+
+@urlBase = http://localhost:3000
+
+####################################################
+## Login
+####################################################
+
+# @name login
+#POST {{urlBase}}/auth/get_token
+#Content-Type: application/json
+#
+#{
+#  "username": "00000000002",
+#  "password": "123456"
+#}
+
+###
+#@token = {{login.response.body.$.token}}
+
+################################
+# USERS
+################################
+
+# @name getAllUsers
+GET {{urlBase}}/users
+
+###
+
+# @name addUser
+POST {{urlBase}}/users
+Content-Type: application/json
+
+{
+    "name": "IBM",
+    "email": "ibm@gmail.com",
+    "password": "123456",
+    "phone": "21981075493"
+}
+
+###
+@id = {{addUser.response.body.$.id}}
+
+###
+
+# @name getCustomerById
+GET {{urlBase}}/users/{{id}}
+
+###
+
+# @name updateUser
+PUT {{urlBase}}/users/{{id}}
+Content-Type: application/json
+
+{
+    "name": "IBM (alt)",
+    "email": "ibm@gmail.com",
+    "password": "123456",
+    "phone": "21981075493"
+}
+
+###
+
+# @name deleteCustomer
+DELETE {{urlBase}}/users/{{id}}
+
+###

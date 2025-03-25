@@ -32,6 +32,14 @@ export class UserTypeORMRepository implements UserRepository {
         }
         return this.typeORMEntityToDomainEntity(userData);
     }
+
+    async findByEmail(email: string): Promise<User | null> {
+        const userData = await this.userRepository.findOneBy({ email: email });
+        if (!userData) {
+            throw new Error('Usuário não encontrado!');
+        }
+        return this.typeORMEntityToDomainEntity(userData);
+    }
     
     async delete(id: string): Promise<void> {
         await this.userRepository.delete(id);

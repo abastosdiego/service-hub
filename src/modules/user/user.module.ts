@@ -1,7 +1,9 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from '../auth/auth.module';
 import { CreateUserUseCase } from './application/use-case/create.user.use.case';
 import { DeleteUserUseCase } from './application/use-case/delete.user.use.case';
+import { GetUserByEmailUseCase } from './application/use-case/get.user.by.email.use.case';
 import { GetUserByIdUseCase } from './application/use-case/get.user.by.id.use.case';
 import { ListUsersdUseCase } from './application/use-case/list.users.use.case';
 import { UpdateUserUseCase } from './application/use-case/update.user.use.case';
@@ -10,7 +12,10 @@ import { UserTypeORMEntity } from './infra/repository/typeORM-entity/user.typeOR
 import { UserTypeORMRepository } from './infra/repository/user.typeORM.repository';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([UserTypeORMEntity])],
+    imports: [
+        forwardRef(() => AuthModule),
+        TypeOrmModule.forFeature([UserTypeORMEntity])
+    ],
     controllers: [UserController],
     providers: [
         {
@@ -21,7 +26,9 @@ import { UserTypeORMRepository } from './infra/repository/user.typeORM.repositor
         GetUserByIdUseCase,
         CreateUserUseCase,
         UpdateUserUseCase,
-        DeleteUserUseCase
-    ]
+        DeleteUserUseCase,
+        GetUserByEmailUseCase
+    ],
+    exports: [GetUserByEmailUseCase]
 })
 export class UserModule {}

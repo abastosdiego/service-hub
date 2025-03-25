@@ -20,6 +20,10 @@ export class UserMemoryRepository implements UserRepository {
     async findById(id: string): Promise<User | null> {
         return this.users.find(u => u.getId() === id) || null;
     }
+
+    async findByEmail(email: string): Promise<User | null> {
+        return this.users.find(u => u.getEmail() === email) || null;
+    }
     
     async delete(id: string): Promise<void> {
         this.users = this.users.filter(u => u.getId() !== id);

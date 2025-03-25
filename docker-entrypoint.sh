@@ -12,8 +12,8 @@ fi
 # Instala dependências
 if [ "$INSTALL_NODE_MODULES" = "true" ]; then
     echo "📦 Instalando dependências..."
-    npm install --save-dev @types/uuid
-    npm install @nestjs/typeorm typeorm @nestjs/config pg
+    #npm install --save-dev @types/uuid
+    #npm install @nestjs/typeorm typeorm @nestjs/config pg
     npm install
 fi
 

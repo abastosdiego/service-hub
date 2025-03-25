@@ -10,16 +10,16 @@
 ####################################################
 
 # @name login
-#POST {{urlBase}}/auth/get_token
-#Content-Type: application/json
-#
-#{
-#  "username": "00000000002",
-#  "password": "123456"
-#}
+POST {{urlBase}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "ibm@gmail.com",
+  "password": "123456"
+}
 
 ###
-#@token = {{login.response.body.$.token}}
+@access_token = {{login.response.body.$.access_token}}
 
 ################################
 # USERS
@@ -27,12 +27,15 @@
 
 # @name getAllUsers
 GET {{urlBase}}/users
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 ###
 
 # @name addUser
 POST {{urlBase}}/users
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
     "name": "IBM",
@@ -48,12 +51,15 @@ Content-Type: application/json
 
 # @name getCustomerById
 GET {{urlBase}}/users/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 ###
 
 # @name updateUser
 PUT {{urlBase}}/users/{{id}}
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
     "name": "IBM (alt)",
@@ -66,5 +72,7 @@ Content-Type: application/json
 
 # @name deleteCustomer
 DELETE {{urlBase}}/users/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 ###

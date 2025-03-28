@@ -5,7 +5,7 @@ import { CreateUserUseCase } from './application/use-case/create.user.use.case';
 import { DeleteUserUseCase } from './application/use-case/delete.user.use.case';
 import { GetUserByEmailUseCase } from './application/use-case/get.user.by.email.use.case';
 import { GetUserByIdUseCase } from './application/use-case/get.user.by.id.use.case';
-import { ListUsersdUseCase } from './application/use-case/list.users.use.case';
+import { ListUsersUseCase } from './application/use-case/list.users.use.case';
 import { UpdateUserUseCase } from './application/use-case/update.user.use.case';
 import { UserController } from './infra/controller/user.controller';
 import { UserTypeORMEntity } from './infra/repository/typeORM-entity/user.typeORM.entity';
@@ -22,7 +22,7 @@ import { UserTypeORMRepository } from './infra/repository/user.typeORM.repositor
             provide: 'UserRepository',
             useClass: UserTypeORMRepository
         },
-        ListUsersdUseCase,
+        ListUsersUseCase,
         GetUserByIdUseCase,
         CreateUserUseCase,
         UpdateUserUseCase,

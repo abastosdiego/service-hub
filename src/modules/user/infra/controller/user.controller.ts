@@ -1,15 +1,15 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "src/modules/auth/guard/jwt-auth.guard";
-import { CreateUserUseCase } from "../../application/use-case/create.user.use.case";
+import { CreateUserDto, CreateUserUseCase } from "../../application/use-case/create.user.use.case";
 import { DeleteUserUseCase } from "../../application/use-case/delete.user.use.case";
 import { GetUserByIdUseCase } from "../../application/use-case/get.user.by.id.use.case";
-import { ListUsersdUseCase } from "../../application/use-case/list.users.use.case";
+import { ListUsersUseCase } from "../../application/use-case/list.users.use.case";
 import { UpdateUserUseCase } from "../../application/use-case/update.user.use.case";
 
 @Controller('/users')
 export class UserController {
     constructor(
-        private listUsersUseCase: ListUsersdUseCase,
+        private listUsersUseCase: ListUsersUseCase,
         private getUserByIdUseCase: GetUserByIdUseCase,
         private createUserUseCase: CreateUserUseCase,
         private updateUserUseCase: UpdateUserUseCase,
@@ -29,8 +29,7 @@ export class UserController {
     }
 
     @Post()
-    @UseGuards(JwtAuthGuard)
-    async create(@Body() userData: any) {
+    async create(@Body() userData: CreateUserDto) {
         const user = await this.createUserUseCase.execute(userData);
         return { id: user.getId(), message: `created successfully!` };
     }

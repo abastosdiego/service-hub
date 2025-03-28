@@ -17,7 +17,7 @@ services:
       no_proxy: localhost, service-hub-postgres
       NODE_ENV: development
       INSTALL_NODE_MODULES: true
-      CREATE_NEW_PROJECT_NESTJS: true
+      CREATE_NEW_PROJECT_NESTJS: false
     restart: unless-stopped
     depends_on:
       - service-hub-postgres

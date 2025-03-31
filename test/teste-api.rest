@@ -18,7 +18,18 @@ Content-Type: application/json
   "password": "123456"
 }
 
+####
+
+# @name login
+POST {{urlBase}}/auth/google-login
+Content-Type: application/json
+
+{
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjgyMWYzYmM2NmYwNzUxZjc4NDA2MDY3OTliMWFkZjllOWZiNjBkZmIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI3NDE1NDY0MjQzNjEtYjFkMzQzZThqMTh0ZTRlcjlqc3NvMXFsZ20zZ3AzYTguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3NDE1NDY0MjQzNjEtYjFkMzQzZThqMTh0ZTRlcjlqc3NvMXFsZ20zZ3AzYTguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTA5OTI4OTUwNjUwMzgxMjE5NTAiLCJlbWFpbCI6ImFiYXN0b3NkaWVnb0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlpWc2R5bnVBR0dmMU5RN1JpaFBBcGciLCJuYW1lIjoiRGllZ28gQWxtZWlkYSBCYXN0b3MiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1lBaFF4VkF0X1RPUFJvWTRFU1N0QjNhOUtFeTNzby1qejhHN25IaXRvcnFCZmZRPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkRpZWdvIiwiZmFtaWx5X25hbWUiOiJBbG1laWRhIEJhc3RvcyIsImlhdCI6MTc0MzQ0MDI4MiwiZXhwIjoxNzQzNDQzODgyfQ.We92p3zavDBidu0gHWOAJgl8XNxjJxNhwQYa6aBduMXkWSM8c78i0cPoZU0EtvmVVv1ElW56z9wdN8CAV1PWFXUp1tyvVg9Pov2IteK0RswQz7MSlK9IWqyidPA4wqHRQPQw6iizeTwhMFlDhNKYcc_za39DNLIGoyBabCU2bDvmIsdwFFCrLnMAh3cmVKphsme_2z3eYkB6ItKgdPqeDkE_5MFFcI8HcEV1qRTOTfm850jpVsg4JEDnts7h7FmeeL_CISdwnxJ3rH8tL1R24PA2FN3cf0ImWBT74qbugD9tvHOgHQ9gJjdvTC8-WgTBiic-rkA6vB7JOppMxi9JKw"
+}
+
 ###
+#@access_token = {{login.response.body.$.access_token}}
 @access_token = {{login.response.body.$.access_token}}
 
 ################################

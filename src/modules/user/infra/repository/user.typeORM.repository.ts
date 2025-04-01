@@ -36,7 +36,7 @@ export class UserTypeORMRepository implements UserRepository {
     async findByEmail(email: string): Promise<User | null> {
         const userData = await this.userRepository.findOneBy({ email: email });
         if (!userData) {
-            throw new Error('Usuário não encontrado!');
+            return null;
         }
         return this.typeORMEntityToDomainEntity(userData);
     }

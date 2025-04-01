@@ -11,7 +11,7 @@ export class UserTypeORMEntity {
     @Column({length: 200, nullable: false})
     email: string;
 
-    @Column({length: 200, nullable: false})
+    @Column({length: 200, nullable: true})
     password: string;
 
     @Column({length: 20, nullable: true})

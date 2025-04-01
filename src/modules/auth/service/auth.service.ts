@@ -2,7 +2,9 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { OAuth2Client } from 'google-auth-library';
+import { CreateUserUseCase } from 'src/modules/user/application/use-case/create.user.use.case';
 import { GetUserByEmailUseCase } from 'src/modules/user/application/use-case/get.user.by.email.use.case';
+import { User } from 'src/modules/user/domain/entity/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -10,6 +12,7 @@ export class AuthService {
 
   constructor(
     private getUserByEmailUseCase: GetUserByEmailUseCase,
+    private createUserUseCase: CreateUserUseCase,
     private jwtService: JwtService,
     private configService: ConfigService
   ) {
@@ -45,8 +48,21 @@ export class AuthService {
     }
   }
 
-  async login(user: any) {
-    const payload = { sub: user.id, email: user.email };
+  async login(userData: { id: string, email: string; name: string }) {
+    const user = await this.createUserIfNotExist({ email: userData.email, name: userData.name});
+    const payload = { sub: user.getId(), email: user.getEmail(), name: user.getName()};
     return { access_token: this.jwtService.sign(payload) };
+  }
+
+  async createUserIfNotExist(userData: { email: string; name: string }): Promise<User> {
+    let user = await this.getUserByEmailUseCase.execute(userData.email);
+    if (!user) {
+      user = await this.createUserUseCase.execute({
+        name: userData.name,
+        email: userData.email,
+        password: undefined,
+      });
+    }
+    return user;
   }
 }

@@ -1,14 +1,20 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export class User {
-    private constructor(private id: string, private name: string, private email:string, private password: string, private phone?:string) {}
+    private constructor(
+        private id: string,
+        private name: string,
+        private email: string,
+        private password?: string,
+        private phone?: string
+    ) {}
 
-    public static create (name: string, email:string, password: string, phone?:string) {
+    public static create(name: string, email: string, password?: string, phone?: string) {
         const id = uuidv4();
         return new User(id, name, email, password, phone);
     }
 
-    public static populate (id: string, name: string, email:string, password: string, phone?:string) {
+    public static populate(id: string, name: string, email: string, password?: string, phone?: string) {
         return new User(id, name, email, password, phone);
     }
 
@@ -28,8 +34,12 @@ export class User {
         return this.email;
     }
 
-    public getPassword(): string {
+    public getPassword(): string | undefined {
         return this.password;
+    }
+
+    public setPassword(password: string): void {
+        this.password = password;
     }
 
     public getPhone(): string | undefined {

@@ -29,6 +29,9 @@ import { UserTypeORMRepository } from './infra/repository/user.typeORM.repositor
         DeleteUserUseCase,
         GetUserByEmailUseCase
     ],
-    exports: [GetUserByEmailUseCase]
+    exports: [
+        GetUserByEmailUseCase,
+        CreateUserUseCase
+    ]
 })
 export class UserModule {}

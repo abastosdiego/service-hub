@@ -6,11 +6,7 @@ import { UserRepository } from "../../domain/repository/user.repository";
 export class GetUserByEmailUseCase {
     constructor(@Inject('UserRepository') private readonly userRepository: UserRepository){}
 
-    async execute(email: string): Promise<User> {
-        const user = await this.userRepository.findByEmail(email);
-        if (!user) {
-            throw new Error("Usuário não contrado!");
-        }
-        return user;
+    async execute(email: string): Promise<User | null> {
+        return await this.userRepository.findByEmail(email);
     }
 }

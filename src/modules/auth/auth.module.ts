@@ -9,6 +9,7 @@ import { AuthService } from './service/auth.service';
 import { GoogleStrategy } from './strategy/google.strategy';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { LocalStrategy } from './strategy/local.strategy';
+import { CurrentUserService } from './service/currenty.user.service';
 
 @Module({
   imports: [
@@ -24,8 +25,8 @@ import { LocalStrategy } from './strategy/local.strategy';
       }),
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, GoogleStrategy, JwtAuthGuard],
+  providers: [AuthService, LocalStrategy, JwtStrategy, GoogleStrategy, JwtAuthGuard, CurrentUserService],
   controllers: [AuthController],
-  exports: [JwtAuthGuard]
+  exports: [JwtAuthGuard, CurrentUserService]
 })
 export class AuthModule {}

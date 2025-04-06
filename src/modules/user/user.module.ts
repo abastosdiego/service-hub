@@ -36,7 +36,8 @@ import { GetUserByEmailAndPasswordUseCase } from './application/use-case/get.use
     exports: [
         GetUserByEmailUseCase,
         GetUserByEmailAndPasswordUseCase,
-        CreateUserUseCase
+        CreateUserUseCase,
+        GetUserByIdUseCase
     ]
 })
 export class UserModule {}

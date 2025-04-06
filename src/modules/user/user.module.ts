@@ -10,6 +10,8 @@ import { UpdateUserUseCase } from './application/use-case/update.user.use.case';
 import { UserController } from './infra/controller/user.controller';
 import { UserTypeORMEntity } from './infra/repository/typeORM-entity/user.typeORM.entity';
 import { UserTypeORMRepository } from './infra/repository/user.typeORM.repository';
+import { CryptoService } from './application/service/crypto.service';
+import { GetUserByEmailAndPasswordUseCase } from './application/use-case/get.user.by.email.and.password.use.case';
 
 @Module({
     imports: [
@@ -27,10 +29,13 @@ import { UserTypeORMRepository } from './infra/repository/user.typeORM.repositor
         CreateUserUseCase,
         UpdateUserUseCase,
         DeleteUserUseCase,
-        GetUserByEmailUseCase
+        GetUserByEmailUseCase,
+        GetUserByEmailAndPasswordUseCase,
+        CryptoService
     ],
     exports: [
         GetUserByEmailUseCase,
+        GetUserByEmailAndPasswordUseCase,
         CreateUserUseCase
     ]
 })

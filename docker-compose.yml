@@ -3,18 +3,18 @@ services:
     container_name: service-hub
     build:
       context: .
-      args:
-        http_proxy: ${http_proxy}
-        https_proxy: ${https_proxy}
+#      args:
+#        http_proxy: ${http_proxy}
+#        https_proxy: ${https_proxy}
     ports:
       - "3000:3000"
     volumes:
       - ./:/app
 #      - /app/node_modules  # Evita sobrescrever node_modules do container, porém atrapalha o vscode. Pois ele não encontra as bibliotecas instaladas no projeto.
     environment:
-      http_proxy: ${http_proxy}
-      https_proxy: ${https_proxy}
-      no_proxy: localhost, service-hub-postgres
+#      http_proxy: ${http_proxy}
+#      https_proxy: ${https_proxy}
+#      no_proxy: localhost, service-hub-postgres
       NODE_ENV: development
       INSTALL_NODE_MODULES: true
       CREATE_NEW_PROJECT_NESTJS: false

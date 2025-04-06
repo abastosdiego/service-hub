@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { OAuth2Client } from 'google-auth-library';
 import { CreateUserUseCase } from 'src/modules/user/application/use-case/create.user.use.case';
+import { GetUserByEmailAndPasswordUseCase } from 'src/modules/user/application/use-case/get.user.by.email.and.password.use.case';
 import { GetUserByEmailUseCase } from 'src/modules/user/application/use-case/get.user.by.email.use.case';
 import { User } from 'src/modules/user/domain/entity/user.entity';
 
@@ -12,6 +13,7 @@ export class AuthService {
 
   constructor(
     private getUserByEmailUseCase: GetUserByEmailUseCase,
+    private getUserByEmailAndPasswordUseCase: GetUserByEmailAndPasswordUseCase,
     private createUserUseCase: CreateUserUseCase,
     private jwtService: JwtService,
     private configService: ConfigService
@@ -20,8 +22,8 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string): Promise<any> {
-    const user = await this.getUserByEmailUseCase.execute(email);
-    if (user && user.getPassword() === password) {
+    const user = await this.getUserByEmailAndPasswordUseCase.execute(email, password);
+    if (user) {
       return { id: user.getId(), email: user.getEmail() };
     }
     return null;

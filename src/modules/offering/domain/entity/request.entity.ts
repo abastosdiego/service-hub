@@ -1,4 +1,4 @@
-interface ServiceRequest {
+export class Request {
     id: string;
     customerId: string;
     serviceId: string;

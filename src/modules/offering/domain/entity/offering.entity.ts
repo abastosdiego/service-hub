@@ -1,4 +1,4 @@
-export class Service {
+export class Offering {
     id: string;
     supplierId: string;
     name: string;

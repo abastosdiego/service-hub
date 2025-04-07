@@ -5,13 +5,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeORMConfigService } from './config/typeorm.config.service';
 import { AuthModule } from './modules/auth/auth.module';
-import { ServiceModule } from './modules/service/service.module';
+import { OfferingModule } from './modules/offering/offering.module';
 import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
     UserModule,
-    ServiceModule,
+    OfferingModule,
     AuthModule,
     ConfigModule.forRoot({
       isGlobal: true

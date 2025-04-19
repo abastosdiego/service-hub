@@ -87,3 +87,17 @@ Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 ###
+
+############################
+### Offering
+############################
+POST {{urlBase}}/offerings
+Content-Type: application/json
+
+{
+  "supplierId": "16c23230-02be-45ea-bbd8-df622d15afb5",
+  "name": "Website Development",
+  "description": "Full-stack website development service",
+  "price": 1500.00,
+  "estimatedDuration": 30
+}

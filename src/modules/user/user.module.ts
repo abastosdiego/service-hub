@@ -12,11 +12,13 @@ import { UserTypeORMEntity } from './infra/repository/typeORM-entity/user.typeOR
 import { UserTypeORMRepository } from './infra/repository/user.typeORM.repository';
 import { CryptoService } from './application/service/crypto.service';
 import { GetUserByEmailAndPasswordUseCase } from './application/use-case/get.user.by.email.and.password.use.case';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
     imports: [
         forwardRef(() => AuthModule),
-        TypeOrmModule.forFeature([UserTypeORMEntity])
+        TypeOrmModule.forFeature([UserTypeORMEntity]),
+        EventEmitterModule.forRoot()
     ],
     controllers: [UserController],
     providers: [

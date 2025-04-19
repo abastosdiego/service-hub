@@ -3,12 +3,14 @@ import { IsEmail, IsOptional, IsString, Length } from "class-validator";
 import { User } from "../../domain/entity/user.entity";
 import { UserRepository } from "../../domain/repository/user.repository";
 import { CryptoService } from "../service/crypto.service";
+import { EventEmitter2 } from "@nestjs/event-emitter";
 
 @Injectable()
 export class CreateUserUseCase {
     constructor(
         @Inject('UserRepository') private readonly userRepository: UserRepository,
-        private readonly cryptoService: CryptoService
+        private readonly cryptoService: CryptoService,
+        private readonly eventEmitter: EventEmitter2
     ) {}
 
     async execute(data: CreateUserDto): Promise<User> {
@@ -20,6 +22,10 @@ export class CreateUserUseCase {
         }
         let user = User.create(data.name, data.email, data.password, data.phone);
         await this.userRepository.save(user);
+        this.eventEmitter.emit("user.created", {
+            userId: user.getId(),
+            email: user.getEmail()
+        });
         return user;
     }
 }

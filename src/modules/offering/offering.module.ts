@@ -8,6 +8,8 @@ import { OfferingTypeORMEntity } from './infra/repository/typeORM-entity/offerin
 import { OfferingTypeORMRepository } from './infra/repository/offering.typeORM.repository';
 import { OfferingController } from './infra/controller/offering.controller';
 import { CreateOfferingUseCase } from './application/use-case/create.offering.use.case';
+import { GetSupplierByIdUseCase } from './application/use-case/get.supplier.by.id.use.case';
+import { SupplierController } from './infra/controller/supplier.controller';
 
 @Module({
     imports: [
@@ -16,7 +18,10 @@ import { CreateOfferingUseCase } from './application/use-case/create.offering.us
             OfferingTypeORMEntity
         ])
     ],
-    controllers: [OfferingController],
+    controllers: [
+        OfferingController,
+        SupplierController
+    ],
     providers: [
         {
             provide: 'SupplierRepository',
@@ -26,9 +31,10 @@ import { CreateOfferingUseCase } from './application/use-case/create.offering.us
             provide: 'OfferingRepository',
             useClass: OfferingTypeORMRepository,
         },
+        UserCreatedListener,
         CreateSupplierUseCase,
         CreateOfferingUseCase,
-        UserCreatedListener
+        GetSupplierByIdUseCase
     ],
     exports: []
 })

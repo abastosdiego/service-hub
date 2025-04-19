@@ -38,13 +38,19 @@ export class SupplierTypeORMRepository implements SupplierRepository {
 
     private typeORMEntityToDomainEntity(supplierData: SupplierTypeORMEntity): Supplier {
         return Supplier.populate(
-            supplierData.id
+            supplierData.id,
+            supplierData.name,
+            supplierData.email,
+            supplierData.phone
         );
     }
 
     private domainEntityToTypeORMEntity(supplier: Supplier): SupplierTypeORMEntity {
         return {
-            id: supplier.getId()
+            id: supplier.getId(),
+            name: supplier.getName(),
+            email: supplier.getEmail(),
+            phone: supplier.getPhone() ?? ''
         };
     }
 }

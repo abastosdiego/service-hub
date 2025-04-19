@@ -9,9 +9,9 @@ export class UserCreatedListener {
   ) {}
 
   @OnEvent('user.created')
-  async handle(event: { userId: string; email: string; name: string }): Promise<void> {
-    const { userId, email } = event;
-    await this.createSupplierUseCase.execute({ id: userId });
+  async handle(event: { userId: string; email: string; name: string, phone: string | undefined }): Promise<void> {
+    const { userId, email, name, phone } = event;
+    await this.createSupplierUseCase.execute({ id: userId, email, name, phone });
     console.log(`Supplier criado para o usuário: ${email}`);
   }
 }

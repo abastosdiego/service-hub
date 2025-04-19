@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { IsString, Length } from "class-validator";
+import { IsEmail, IsOptional, IsString, Length } from "class-validator";
 import { Supplier } from "../../domain/entity/supplier.entity";
 import { SupplierRepository } from "../../domain/repository/supplier.repository";
 
@@ -14,7 +14,12 @@ export class CreateSupplierUseCase {
         if (existingSupplier) {
             throw new Error("Supplier already exists");
         }
-        const supplier = Supplier.create(supplierData.id);
+        const supplier = Supplier.create(
+            supplierData.id,
+            supplierData.name,
+            supplierData.email,
+            supplierData.phone
+        );
         await this.supplierRepository.save(supplier);
         return supplier;
     }
@@ -23,5 +28,17 @@ export class CreateSupplierUseCase {
 export class CreateSupplierDto {
     @IsString()
     @Length(1, 200)
-    id: string; // O ID do Supplier será o mesmo do User
+    id: string; // The Supplier ID will be the same as the User ID.
+
+    @IsString()
+    @Length(1, 200)
+    name: string;
+
+    @IsEmail()
+    email: string;
+
+    @IsOptional()
+    @IsString()
+    @Length(10, 20)
+    phone?: string;
 }

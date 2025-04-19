@@ -24,7 +24,9 @@ export class CreateUserUseCase {
         await this.userRepository.save(user);
         this.eventEmitter.emit("user.created", {
             userId: user.getId(),
-            email: user.getEmail()
+            email: user.getEmail(),
+            name: user.getName(),
+            phone: user.getPhone()
         });
         return user;
     }

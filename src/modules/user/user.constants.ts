@@ -1,0 +1,1 @@
+export const USER_DB_CONNECTION = 'userConnection';

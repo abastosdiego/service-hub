@@ -4,11 +4,12 @@ import { Repository } from "typeorm";
 import { Offering } from "../../domain/entity/offering.entity";
 import { OfferingRepository } from "../../domain/repository/offering.repository";
 import { OfferingTypeORMEntity } from "./typeORM-entity/offering.typeORM.entity";
+import { OFFERING_DB_CONNECTION } from "../../offering.constants";
 
 @Injectable()
 export class OfferingTypeORMRepository implements OfferingRepository {
   constructor(
-    @InjectRepository(OfferingTypeORMEntity)
+    @InjectRepository(OfferingTypeORMEntity, OFFERING_DB_CONNECTION)
     private readonly offeringRepository: Repository<OfferingTypeORMEntity>,
   ) {}
 

@@ -95,7 +95,7 @@ POST {{urlBase}}/offerings
 Content-Type: application/json
 
 {
-  "supplierId": "9eb2f87d-baf9-4713-9a65-5727d6e8f8ab",
+  "supplierId": "19c7f07e-10c9-4ea4-873f-cacf067886f0",
   "name": "Website Development",
   "description": "Full-stack website development service",
   "price": 1500.00,
@@ -105,6 +105,6 @@ Content-Type: application/json
 ############################
 ### Supplier
 ############################
-GET {{urlBase}}/suppliers/9eb2f87d-baf9-4713-9a65-5727d6e8f8ab
+GET {{urlBase}}/suppliers/19c7f07e-10c9-4ea4-873f-cacf067886f0
 Content-Type: application/json
 Authorization: Bearer {{access_token}}

@@ -15,10 +15,6 @@ import { UserModule } from './modules/user/user.module';
     AuthModule,
     ConfigModule.forRoot({
       isGlobal: true
-    }),
-    TypeOrmModule.forRootAsync({
-      useClass: TypeORMConfigService,
-      inject: [TypeORMConfigService]
     })
   ],
   controllers: [AppController],

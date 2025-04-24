@@ -1,0 +1,1 @@
+export const OFFERING_DB_CONNECTION = 'offeringConnection';

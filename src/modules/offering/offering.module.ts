@@ -10,13 +10,18 @@ import { OfferingController } from './infra/controller/offering.controller';
 import { CreateOfferingUseCase } from './application/use-case/create.offering.use.case';
 import { GetSupplierByIdUseCase } from './application/use-case/get.supplier.by.id.use.case';
 import { SupplierController } from './infra/controller/supplier.controller';
+import { OfferingTypeORMConfigService } from './offering.typeORM.config.service';
+import { OFFERING_DB_CONNECTION } from './offering.constants';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([
-            SupplierTypeORMEntity,
-            OfferingTypeORMEntity
-        ])
+        TypeOrmModule.forRootAsync({
+            name: OFFERING_DB_CONNECTION,
+            useClass: OfferingTypeORMConfigService,
+        }),
+        TypeOrmModule.forFeature(
+            [SupplierTypeORMEntity, OfferingTypeORMEntity], OFFERING_DB_CONNECTION,
+        ),
     ],
     controllers: [
         OfferingController,

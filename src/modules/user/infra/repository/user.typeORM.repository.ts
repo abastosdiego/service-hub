@@ -4,12 +4,13 @@ import { Repository } from "typeorm";
 import { User } from "../../domain/entity/user.entity";
 import { UserRepository } from "../../domain/repository/user.repository";
 import { UserTypeORMEntity } from "./typeORM-entity/user.typeORM.entity";
+import { USER_DB_CONNECTION } from "../../user.constants";
 
 @Injectable()
 export class UserTypeORMRepository implements UserRepository {
 
     constructor(
-        @InjectRepository(UserTypeORMEntity)
+        @InjectRepository(UserTypeORMEntity, USER_DB_CONNECTION)
         private readonly userRepository: Repository<UserTypeORMEntity>
     ) {}
 

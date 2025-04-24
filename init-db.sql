@@ -1,0 +1,2 @@
+CREATE DATABASE offerings_db;
+CREATE DATABASE users_db;

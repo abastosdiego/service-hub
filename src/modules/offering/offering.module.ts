@@ -17,6 +17,7 @@ import { OfferingTypeORMRepository } from './infra/repository/offering.typeORM.r
 import { SupplierTypeORMRepository } from './infra/repository/supplier.typeORM.repository';
 import { CustomerTypeORMEntity } from './infra/repository/typeORM-entity/customer.typeORM.entity';
 import { OfferingTypeORMEntity } from './infra/repository/typeORM-entity/offering.typeORM.entity';
+import { RequestTypeORMEntity } from './infra/repository/typeORM-entity/request.typeORM.entity';
 import { SupplierTypeORMEntity } from './infra/repository/typeORM-entity/supplier.typeORM.entity';
 import { OFFERING_DB_CONNECTION } from './offering.constants';
 import { OfferingTypeORMConfigService } from './offering.typeORM.config.service';
@@ -30,7 +31,7 @@ import { OfferingTypeORMConfigService } from './offering.typeORM.config.service'
             useClass: OfferingTypeORMConfigService,
         }),
         TypeOrmModule.forFeature(
-            [SupplierTypeORMEntity, OfferingTypeORMEntity, CustomerTypeORMEntity], OFFERING_DB_CONNECTION,
+            [SupplierTypeORMEntity, OfferingTypeORMEntity, CustomerTypeORMEntity, RequestTypeORMEntity], OFFERING_DB_CONNECTION,
         ),
     ],
     controllers: [

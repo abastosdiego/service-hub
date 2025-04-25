@@ -91,6 +91,13 @@ Authorization: Bearer {{access_token}}
 ############################
 ### Offering
 ############################
+
+GET {{urlBase}}/offerings
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+###
+
 POST {{urlBase}}/offerings
 Content-Type: application/json
 Authorization: Bearer {{access_token}}

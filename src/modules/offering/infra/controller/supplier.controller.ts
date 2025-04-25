@@ -1,14 +1,16 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { GetSupplierByIdUseCase } from '../../application/use-case/get.supplier.by.id.use.case';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/modules/auth/guard/jwt-auth.guard';
+import { GetSupplierUseCase } from '../../application/use-case/get.supplier.use.case';
 
 @Controller('suppliers')
 export class SupplierController {
   constructor(
-    private readonly getSupplierByIdUseCase: GetSupplierByIdUseCase,
+    private readonly getSupplierUseCase: GetSupplierUseCase,
   ) {}
 
-  @Get(':id')
-  async getSupplierById(@Param('id') id: string) {
-    return this.getSupplierByIdUseCase.execute(id);
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  async getSupplier() {
+    return this.getSupplierUseCase.execute();
   }
 }

@@ -93,9 +93,9 @@ Authorization: Bearer {{access_token}}
 ############################
 POST {{urlBase}}/offerings
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
-  "supplierId": "19c7f07e-10c9-4ea4-873f-cacf067886f0",
   "name": "Website Development",
   "description": "Full-stack website development service",
   "price": 1500.00,
@@ -105,6 +105,13 @@ Content-Type: application/json
 ############################
 ### Supplier
 ############################
-GET {{urlBase}}/suppliers/19c7f07e-10c9-4ea4-873f-cacf067886f0
+GET {{urlBase}}/suppliers
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+############################
+### Customer
+############################
+GET {{urlBase}}/customers
 Content-Type: application/json
 Authorization: Bearer {{access_token}}

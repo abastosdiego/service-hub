@@ -2,15 +2,22 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Supplier } from '../../domain/entity/supplier.entity';
 import { SupplierRepository } from '../../domain/repository/supplier.repository';
 import { OfferingRepository } from '../../domain/repository/offering.repository';
+import { CurrentUserService } from 'src/modules/auth/service/currenty.user.service';
 
 @Injectable()
-export class GetSupplierByIdUseCase {
+export class GetSupplierUseCase {
   constructor(
     @Inject('SupplierRepository') private readonly supplierRepository: SupplierRepository,
     @Inject('OfferingRepository') private readonly offeringRepository: OfferingRepository,
+    private readonly currentUserService: CurrentUserService
   ) {}
 
-  async execute(supplierId: string): Promise<SupplierOutputDto> {
+  async execute(): Promise<SupplierOutputDto> {
+    const currentUser = await this.currentUserService.getUser();
+    const supplierId = currentUser?.id;
+    if (!supplierId) {
+      throw new Error("Supplier ID not provided in the current user context");
+    }
     const supplier = await this.supplierRepository.findById(supplierId);
     if (!supplier) {
       throw new Error('Supplier not found');
